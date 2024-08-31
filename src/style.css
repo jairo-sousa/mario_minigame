@@ -68,16 +68,29 @@ body {
 }
 
 #visaoJogo {
-    display: none;
+    /* MOSTRANDO TEMPORARIAMENTE */
+    /* display: none; */
 }
 
 /* VISAO GAME OVER */
 #visaoGameOver {
-    /* MOSTRANDO TEPORARIAMENTE */
-    /* display: none; */
+    display: none;
     gap: 20px;
 }
 
 #imagemGameOver {
     margin-bottom: 100px;
+}
+
+/* CLASSES DAS ANIMAÇÕES */
+.slide {
+    animation: slide 2s infinite linear;
+}
+
+.float {
+    animation: float 20s infinite linear;
+}
+
+.jump {
+    animation: jump 800ms ease-out;
 }
