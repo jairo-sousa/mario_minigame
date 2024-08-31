@@ -94,3 +94,14 @@ body {
 .jump {
     animation: jump 800ms ease-out;
 }
+
+/* DEFINIÇÃO DAS ANIMAÇÕES */
+@keyframes float {
+    0% {
+        left: 100%;
+    }
+
+    100% {
+        left: -550px;
+    }
+}
