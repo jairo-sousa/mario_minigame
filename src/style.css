@@ -67,7 +67,17 @@ body {
     top: 50px;
 }
 
-/* MOSTRANDO TEMPORARIAMENTE */
-/* #visaoJogo {
+#visaoJogo {
     display: none;
-} */
+}
+
+/* VISAO GAME OVER */
+#visaoGameOver {
+    /* MOSTRANDO TEPORARIAMENTE */
+    /* display: none; */
+    gap: 20px;
+}
+
+#imagemGameOver {
+    margin-bottom: 100px;
+}
