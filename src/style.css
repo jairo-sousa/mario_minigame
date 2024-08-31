@@ -41,3 +41,9 @@ body {
 
     overflow: hidden;
 }
+
+/* VISÃO DO MENU */
+#visaoMenu {
+    gap: 130px;
+    flex-direction: column;
+}
