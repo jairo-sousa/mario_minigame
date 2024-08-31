@@ -46,8 +46,6 @@ body {
 #visaoMenu {
     gap: 130px;
     flex-direction: column;
-
-    display: none; /* OCULTANDO TEMPORARIAMENTE */
 }
 
 /* VISÃO DO JOGO */
@@ -68,8 +66,7 @@ body {
 }
 
 #visaoJogo {
-    /* MOSTRANDO TEMPORARIAMENTE */
-    /* display: none; */
+    display: none;
 }
 
 /* VISAO GAME OVER */
@@ -113,5 +110,23 @@ body {
 
     100% {
         left: -369px;
+    }
+}
+
+@keyframes jump {
+    0% {
+        bottom: 30px;
+    }
+
+    40% {
+        bottom: 200px;
+    }
+
+    60% {
+        bottom: 200px;
+    }
+
+    100% {
+        bottom: 30px;
     }
 }
