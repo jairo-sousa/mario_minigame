@@ -21,3 +21,35 @@ const audioEnd = new Audio("/audio/end.ogg");
 
 // BANDEIRA
 let jogoEstaRodando = false;
+
+// FUNÇÕES DO JOGO
+function esconderVisoes() {
+    visaoMenu.style.display = "none";
+    visaoJogo.style.display = "none";
+    visaoGameOver.style.display = "none";
+}
+
+function pseudoRotear(visao) {
+    esconderVisoes();
+
+    visao.style.display = "flex";
+
+    if (visao === visaoJogo) {
+        // INICIAR JOGO AO MOSTRAR visaoJogo
+    }
+
+    if (visao === visaoMenu) {
+        // RESETAR JOGO AO MOSTRAR visaoMenu
+    }
+}
+
+// LIDANDO COM EVENTOS
+botaoStart.addEventListener("click", function () {
+    pseudoRotear(visaoJogo);
+});
+botaoRestart.addEventListener("click", function () {
+    pseudoRotear(visaoJogo);
+});
+botaoQuit.addEventListener("click", function () {
+    pseudoRotear(visaoMenu);
+});
