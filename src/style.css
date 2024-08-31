@@ -30,3 +30,14 @@ button {
 .column {
     flex-direction: column;
 }
+
+/* CENA */
+body {
+    width: 100%;
+    height: 100vh;
+
+    background: linear-gradient(#87ceeb, #e0f6ff);
+    border-bottom: 30px solid #007405;
+
+    overflow: hidden;
+}
