@@ -46,4 +46,28 @@ body {
 #visaoMenu {
     gap: 130px;
     flex-direction: column;
+
+    display: none; /* OCULTANDO TEMPORARIAMENTE */
 }
+
+/* VISÃO DO JOGO */
+#spriteJogador {
+    position: absolute;
+    bottom: 30px;
+    left: 100px;
+}
+
+#spriteCano {
+    position: absolute;
+    bottom: 30px;
+}
+
+#spriteNuvems {
+    position: absolute;
+    top: 50px;
+}
+
+/* MOSTRANDO TEMPORARIAMENTE */
+/* #visaoJogo {
+    display: none;
+} */
