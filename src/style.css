@@ -9,3 +9,13 @@
 
     box-sizing: border-box;
 }
+
+/* BOTÃO PADRÃO */
+button {
+    border-radius: 10px;
+    border: none;
+    width: 148px;
+    height: 53px;
+    color: #ffffff;
+    background-color: #007405;
+}
