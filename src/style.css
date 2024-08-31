@@ -19,3 +19,14 @@ button {
     color: #ffffff;
     background-color: #007405;
 }
+
+/* CLASSES REUTILIZÁVEIS */
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
