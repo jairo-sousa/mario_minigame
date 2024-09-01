@@ -53,10 +53,37 @@ function start() {
 }
 
 function executarJogo() {
+    // VERIFICAÇÃO DE COLISÃO
+    const deslocamentoCano = spriteCano.getBoundingClientRect().left;
+    const alturaPuloJogador =
+        window.innerHeight - spriteJogador.getBoundingClientRect().bottom;
+
+    const alinhadoVertical = deslocamentoCano <= 225 && deslocamentoCano >= 90;
+    const alinhadoHorizontal = alturaPuloJogador <= 133;
+
+    const estaColidindo = alinhadoVertical && alinhadoHorizontal;
+
     // LIDANDO COM EXECUÇÃO DO JOGO
+    if (estaColidindo) {
+        // FIM DE JOGO
+    }
+
     if (jogoEstaRodando) {
         //  CONTINUAR EXECUTANDO
         requestAnimationFrame(executarJogo);
+    }
+}
+
+function pular(sprite) {
+    const estaPulando = sprite.classList.contains("jump");
+    const permitidoPular = !estaPulando && jogoEstaRodando;
+
+    if (permitidoPular) {
+        sprite.classList.add("jump");
+
+        setTimeout(() => {
+            sprite.classList.remove("jump");
+        }, 800);
     }
 }
 
@@ -69,4 +96,13 @@ botaoRestart.addEventListener("click", function () {
 });
 botaoQuit.addEventListener("click", function () {
     pseudoRotear(visaoMenu);
+});
+
+document.addEventListener("keypress", function (evento) {
+    // PULAR AO PRESSIONAR ESPAÇO
+    const teclaPressionada = evento.key;
+
+    if (teclaPressionada === " ") {
+        pular(spriteJogador);
+    }
 });
