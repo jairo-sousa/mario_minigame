@@ -52,6 +52,27 @@ function start() {
     requestAnimationFrame(executarJogo);
 }
 
+function gameOver(deslocamento, alturaPulo) {
+    jogoEstaRodando = false;
+
+    // AUDIO
+    audioStart.pause();
+    audioEnd.play();
+
+    // JOGADOR
+    spriteJogador.classList.remove("jump");
+    spriteJogador.src = "/img/player_losing.png";
+    spriteJogador.style.bottom = `${alturaPulo}px`;
+
+    // CANO
+    spriteCano.classList.remove("slide");
+    spriteCano.style.left = `${deslocamento}px`;
+
+    setTimeout(() => {
+        pseudoRotear(visaoGameOver);
+    }, 4000);
+}
+
 function executarJogo() {
     // VERIFICAÇÃO DE COLISÃO
     const deslocamentoCano = spriteCano.getBoundingClientRect().left;
@@ -66,6 +87,7 @@ function executarJogo() {
     // LIDANDO COM EXECUÇÃO DO JOGO
     if (estaColidindo) {
         // FIM DE JOGO
+        gameOver(deslocamentoCano, alturaPuloJogador);
     }
 
     if (jogoEstaRodando) {
