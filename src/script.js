@@ -39,11 +39,23 @@ function pseudoRotear(visao) {
     }
 
     if (visao === visaoMenu) {
-        // RESETAR JOGO AO MOSTRAR visaoMenu
+        resetarjogo(); // RESETAR JOGO AO MOSTRAR visaoMenu
     }
 }
 
+function resetarjogo() {
+    // AUDIO
+    audioEnd.pause();
+    audioEnd.currentTime = 0;
+    audioStart.currentTime = 0;
+
+    // PLAYER
+    spriteJogador.src = "/img/player.gif";
+    spriteJogador.style.bottom = "30px";
+}
+
 function start() {
+    resetarjogo();
     jogoEstaRodando = true;
 
     audioStart.play();
