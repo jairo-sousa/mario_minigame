@@ -140,3 +140,6 @@ document.addEventListener("keypress", function (evento) {
         pular(spriteJogador);
     }
 });
+
+// REPRODUZIR AUDIO "INFINITAMENTE"
+startAudio.addEventListener("ended", startAudio.play);
