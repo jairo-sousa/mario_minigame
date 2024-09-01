@@ -35,11 +35,28 @@ function pseudoRotear(visao) {
     visao.style.display = "flex";
 
     if (visao === visaoJogo) {
-        // INICIAR JOGO AO MOSTRAR visaoJogo
+        start(); // INICIAR JOGO AO MOSTRAR visaoJogo
     }
 
     if (visao === visaoMenu) {
         // RESETAR JOGO AO MOSTRAR visaoMenu
+    }
+}
+
+function start() {
+    jogoEstaRodando = true;
+
+    audioStart.play();
+
+    spriteCano.classList.add("slide");
+    requestAnimationFrame(executarJogo);
+}
+
+function executarJogo() {
+    // LIDANDO COM EXECUÇÃO DO JOGO
+    if (jogoEstaRodando) {
+        //  CONTINUAR EXECUTANDO
+        requestAnimationFrame(executarJogo);
     }
 }
 
