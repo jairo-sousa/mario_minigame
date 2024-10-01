@@ -1,0 +1,46 @@
+/* 1 
+    1.A     No arquivo index.html, na TAG body, crie div#elementoQualquer 
+    1.B     Dentro da DIV, crie img#elementoFilho com src -> /img/game_logo 
+    1.C     Crie também button#botao1 com o texto BOTAO1 
+    1.D     Observe as mudanças no navegador com live server
+
+NOTA -> Você poderia usar qualquer imagem da pasta img 
+Bastaria mudar em src, experimente 
+*/
+
+/* 2 
+    2.A     Após elementoQualquer, crie div#elementoIrmao 
+    2.B     Dentro crie img#nuven com src -> /img/clouds 
+    2.C     crie também button#botao2 com o texto BOTAO2
+    2.D     Observe as mudanças no navegador
+    
+NOTA -> Repare que tanto as DIVs quanto a IMG que criamos possuem um "id"
+exemplo - id="elementoQualquer" - Isso é uma forma de diferenciar cada um
+Como se cada elemento fosse uma pessoa e o id é o nome da pessoa
+Precisaremos desses nomes para mudar o vsual de cada elemento
+*/
+
+/* 3
+    3.A     defina border: 1px solid red para #elementoQualquer e #elementoIrmao
+    3.B     Observe as mudanças no navegador
+
+NOTA -> Observe que cada DIV #elementoQualquer e #elementoIrmao, tem seus próprios
+"elementos filhos" e normalmente eles não saem do limite do "elemento pai"
+Com a borda vermelha podemos ver claramente esse limite
+Veja que os "irmãos", normalmente ficam lado a lado, sem "invadir" o espaço do outro 
+*/
+
+/* 4
+    4.A     Após elementoIrmao Crie div#segundoIrmao
+    4.B     Dentro crie img#filhoDoSegundo com src -> /img/game_over
+    4.C     crie também button#botao3 com o texto BOTAO3
+    4.D     defina uma borda vermelha para #segundoIrmao
+    4.E     Observe as mudanças no navegador
+*/
+
+/* POSÍVEIS DÚVIDAS 
+    Como abrir no navegador com Live Server?
+    ->      Clique com o botão direito do mouse no aquivo "index.html" e clique na
+    primeira opção "Abrir com live server". Agora sempre que você salvar um arquivo
+    o Live Server vai atualizar no navegador que foi aberto
+*/
