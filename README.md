@@ -146,3 +146,155 @@ Quando Baixada (false) avisa que o jogo não está rodando
 // BANDEIRA
 let jogoEstaRodando = false;
 ```
+
+## </br>
+
+### ROTEAMENTO
+
+> 1 - Crie uma função para esconder as visões
+
+Exemplo de como esconder uma visão (ou qualquer elemento) via JavaScript:
+
+```javascript
+// Definir display "none" para o elemento exemploVisao
+exemploVisao.style.display = "none";
+```
+
+-   Crie a função `esconderVisoes`
+-   Dentro da função, defina `display` `"none"` para a `visaoMenu`
+
+Fica assim:
+
+```javascript
+// FUNÇÕES
+function esconderVisoes() {
+    visaoMenu.style.display = "none";
+}
+```
+
+-   Para testar, acesse o `DevTools` e na guia console chame a função.
+    -   Digite `esconderVisoes()` e pressione `enter`
+
+```
+A visaoMenu deve sumir.
+Em  algum momento a visão na tela será a visaoJogo ou visaoGameOver.
+Para garantir que suma qualquer que seja a visão na tela
+Definimos o "display" das outra como "none" também
+```
+
+-   Ainda na função, defina `display` `"none"` para a `visaoJogo` e `visaoGameOver`
+
+Fica assim:
+
+```javascript
+// FUNÇÕES
+function esconderVisoes() {
+    visaoMenu.style.display = "none";
+    visaoJogo.style.display = "none";
+    visaoGameOver.style.display = "none";
+}
+```
+
+</br>
+
+> 2 - Crie uma função para rotear entre as visões
+
+```
+Após esconder as visões, podemos escolher uma e voltar a mostrar ela.
+Essa ação é chamada de roteamento.
+Por exemplo: para rotear para "telaJogo", esconda a visões
+E volte a mostrar a "telaJogo". Para mostrar, defina "display" "flex"
+```
+
+-   Crie a função `pseudoRotear`
+-   Dentro da função chame `esconderVisoes`
+-   Em seguida mostre a telaJogo definindo seu `display` `flex`
+
+Fica assim:
+
+```javascript
+function pseudoRotear() {
+    esconderVisoes();
+
+    visaoJogo.style.display = "flex";
+}
+```
+
+-   Chame `pseudoRotear` no navegador para mostrar a visaoJogo
+
+```
+Vamos fazer a função pseudoRotear funcionar para todas as telas
+```
+
+-   Na função crie o parâmetro `visao` em vez de `visaoJogo`, deixe apenas `visao`
+
+Assim:
+
+```javascript
+function pseudoRotear(visao) {
+    esconderVisoes();
+
+    visao.style.display = "flex";
+}
+```
+
+-   Teste o roteamento de cada tela no navegador, digitando no console
+    -   `pseudoRotear(visaoJogo)`
+    -   `pseudoRotear(visaoGameOver)`
+    -   `pseudoRotear(visaoMenu)`
+
+```
+A essa altura epero que não esteja pensando em hackear a NASA
+```
+
+-   Ainda em `pseudoRotear`, use um `if` para verificar se a `visao` passado no parâmetro é a `visaoJogo`. Se for, deve mostrar no console: "[ visao Jogo ] - executar função start"
+
+Assim:
+
+```javascript
+if (visao === visaoJogo) {
+    console.log("[ visao Jogo ] - executar função start");
+}
+```
+
+-   Faça o mesmo para `visaoMenu`, para mostrar "[ visao menu ] - executar função resetarJogo"
+
+Assim:
+
+```javascript
+if (visao === visaoMenu) {
+    console.log("[ visao menu ] - executar função resetarJogo");
+}
+```
+
+</br>
+
+```
+Vamos fazer o roteamento acontecer ao clicar nos botões
+
+Para isso crie um observador, que verifica de os botões foram clicados
+Crie um para cada botão e passe uma função que chame "pseudoRotear"
+Para a visão adequada
+```
+
+-   Use o código a seguir para criar um event listener que observa `botaoStart`
+
+```javascript
+// LIDANDO COM EVENTOS
+botaoStart.addEventListener("click", function () {
+    pseudoRotear(visaoJogo);
+});
+```
+
+-   Faça o mesmo para os outros botões:
+
+```javascript
+botaoRestart.addEventListener("click", function () {
+    pseudoRotear(visaoJogo);
+});
+botaoQuit.addEventListener("click", function () {
+    pseudoRotear(visaoMenu);
+});
+```
+
+-   Experimente clicar em cada botão
