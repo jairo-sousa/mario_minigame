@@ -372,3 +372,58 @@ fica assim:
 // REPRODUZIR AUDIO "INFINITAMENTE"
 startAudio.addEventListener("ended", startAudio.play);
 ```
+
+## </br>
+
+### AÇÃO PULO
+
+> 1 - faça o jogador pular
+
+-   Crie a função pular
+    -   Primeiro verifique se o jogador já `estaPulando`, ou seja contém a classe `jump`:
+    ```javascript
+    const estaPulando = spriteJogador.classList.contains("jump");
+    ```
+    -   Será `permitidoPular` se o jogador NÃO está pulando (`!estaPulando`) e ao mesmo tempo o `jogoEstaRodando`:
+    ```javascript
+    const permitidoPular = !estaPulando && jogoEstaRodando;
+    ```
+-   Se for `permitidoPular`, adicionamos a classe `jump` ao `spriteJogador` e usamos `setTimeout` para remover a classe adicionada, 800 milisegundos depois
+
+Fica assim:
+
+```javascript
+function pular() {
+    const estaPulando = spriteJogador.classList.contains("jump");
+    const permitidoPular = !estaPulando && jogoEstaRodando;
+
+    if (permitidoPular) {
+        spriteJogador.classList.add("jump");
+
+        setTimeout(() => {
+            spriteJogador.classList.remove("jump");
+        }, 800);
+    }
+}
+```
+
+A função de pular já existe, só falta executar a função quando o usuário pressionar a tecla `espaço`.
+
+> Chame a função pular ao pressionar a tecla `espaço`
+
+-   Adicione um `eventListener` em `document` para escutar o evento `keydown`
+-   Passe `evento` como prâmetro, e verifique a tecla pressionada, para então chamar a função de pular.
+
+fica Assim:
+
+```javascript
+document.addEventListener("keypress", function (evento) {
+    const teclaPressionada = evento.key;
+
+    if (teclaPressionada === " ") {
+        pular();
+    }
+});
+```
+
+-   Teste o pulo no navegador
