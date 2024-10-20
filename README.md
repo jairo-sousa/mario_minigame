@@ -19,6 +19,15 @@
 
 ## </br>
 
+### Conteúdo
+
+-   [VARIÁVEIS](#VARIÁVEIS)
+-   [ROTEAMENTO](#ROTEAMENTO)
+-   [EXECUÇÃO DO JOGO](#EXECUÇÃO-DO-JOGO)
+-   [AÇÃO PULO](#AÇÃO-PULO)
+
+## </br>
+
 ### VARIÁVEIS
 
 > 1 - Crie as variáveis globais para as visões do jogo
