@@ -298,3 +298,77 @@ botaoQuit.addEventListener("click", function () {
 ```
 
 -   Experimente clicar em cada botão
+
+## </br>
+
+### EXECUÇÃO DO JOGO
+
+</br>
+
+> 1 - Crie o game loop do jogo
+
+-   Após a função `pseudoRotear` crie a função `start`
+-   Nela mude `jogoEstaRodando` para `true`
+-   Faça o `audioStart` reproduzir com:
+
+    ```javascript
+    audioStart.play();
+    ```
+
+-   adicionamos a classe `slide` ao `spriteCano` com:
+    ```javascript
+    spriteCano.classList.add("slide");
+    ```
+-   Usamos `requestAnimationFrame` para executar `gameLoop` que será criada em breve:
+
+    ```javascript
+    requestAnimationFrame(gameLoop);
+    ```
+
+Tudo junto fica assim:
+
+```javascript
+function start() {
+    jogoEstaRodando = true;
+
+    audioStart.play();
+    spriteCano.classList.add("slide");
+
+    requestAnimationFrame(executarJogo);
+}
+```
+
+</br>
+
+-   Após a função `start` crie a função `gameLoop`
+
+Por enquanto ela apenas observa o valor da bandeira `jogoEstaRodando` mostra uma mensagem e repete.</br>
+
+Ela Só para de repetir se `jogoEstaRodando` voltar a ser `false`
+
+fica assim:
+
+```javascript
+function gameLoop() {
+    console.log("O jogo está executando...");
+
+    // LIDANDO COM EXECUÇÃO DO JOGO
+    if (jogoEstaRodando) {
+        //  CONTINUAR EXECUTANDO
+        requestAnimationFrame(gameLoop);
+    }
+}
+```
+
+-   Abra o jogo, vá no consose do navegador e veja que ele repete a mensagem infinitamente
+
+> 2 - Faça o audio repetir
+
+-   Ao fim do código, adicione um `eventListener` para quando o audio chegar ao fim ele tocar novamente usando o evento `ended`
+
+fica assim:
+
+```javascript
+// REPRODUZIR AUDIO "INFINITAMENTE"
+startAudio.addEventListener("ended", startAudio.play);
+```
