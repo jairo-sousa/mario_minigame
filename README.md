@@ -343,7 +343,7 @@ function start() {
     audioStart.play();
     spriteCano.classList.add("slide");
 
-    requestAnimationFrame(executarJogo);
+    requestAnimationFrame(gameLoop);
 }
 ```
 
@@ -379,7 +379,7 @@ fica assim:
 
 ```javascript
 // REPRODUZIR AUDIO "INFINITAMENTE"
-startAudio.addEventListener("ended", startAudio.play);
+audioStart.addEventListener("ended", audioStart.play);
 ```
 
 ## </br>
