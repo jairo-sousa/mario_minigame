@@ -27,6 +27,7 @@
 -   [AÇÃO PULO](#AÇÃO-PULO)
 -   [CÁLCULO DE COLISÃO](#CÁLCULO-DE-COLISÃO)
 -   [GAME OVER](#GAME-OVER)
+-   [RESETAR JOGO](#RESETAR-JOGO)
 
 ## </br>
 
@@ -653,3 +654,87 @@ function gameOver(deslocamento, alturaPulo) {
     }
     ```
 -   Faça o teste no navegador
+
+## </br>
+
+### RESETAR JOGO
+
+> 1 - Crie uma função para resetar o jogo
+
+-   Antes da função `start` crie a função `resetarJogo`
+
+```javascript
+function resetarjogo() {}
+```
+
+#### Resetar os áudios
+
+-   Dentro da função criada:
+    -   Pause o `audioEnd`
+    -   E defina o tempo atual (`currentTime`) de `audioEnd` e `audioStart` para `0`
+    ```javascript
+    // AUDIO
+    audioEnd.pause();
+    audioEnd.currentTime = 0;
+    audioStart.currentTime = 0;
+    ```
+
+#### Resetar o mario
+
+-   Ainda na função, para `spriteJogador`:
+    -   Defina o `src` para `"/img/player.gif"`
+    -   E defina o `style.bottom` com `"30px"`
+    ```javascript
+    // JOGADOR/MARIO
+    spriteJogador.src = "/img/player.gif";
+    spriteJogador.style.bottom = "30px";
+    ```
+
+Tudo junto deve ficar assim:
+
+```javascript
+function resetarjogo() {
+    // AUDIO
+    audioEnd.pause();
+    audioEnd.currentTime = 0;
+    audioStart.currentTime = 0;
+
+    // JOGADOR/MARIO
+    spriteJogador.src = "/img/player.gif";
+    spriteJogador.style.bottom = "30px";
+}
+```
+
+</br>
+
+> 2 - Faça o jogo resetar quando for preciso
+
+-   Na função `pseudoRotear` chame a função `resetarjogo()` quando rotear para `visaoMenu`
+
+    ```javascript
+    if (visao === visaoMenu) {
+        console.log("[ visao menu ] - executar função resetarJogo");
+        resetarjogo();
+    }
+    ```
+
+-   Chame também no início da função `start` para garantir que o jogo está resetado sempre que for executar
+
+    ```javascript
+    function start() {
+        resetarjogo();
+
+        jogoEstaRodando = true;
+
+        audioStart.play();
+        spriteCano.classList.add("slide");
+
+        requestAnimationFrame(gameLoop);
+    }
+    ```
+
+</br>
+
+```
+O jogo está finalizado, sinta-se livre para modificá-lo e adicionar novas funcionalidades.
+```
