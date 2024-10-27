@@ -26,6 +26,7 @@
 -   [EXECUÇÃO DO JOGO](#EXECUÇÃO-DO-JOGO)
 -   [AÇÃO PULO](#AÇÃO-PULO)
 -   [CÁLCULO DE COLISÃO](#CÁLCULO-DE-COLISÃO)
+-   [GAME OVER](#GAME-OVER)
 
 ## </br>
 
@@ -551,3 +552,104 @@ function executarJogo() {
     }
 }
 ```
+
+## </br>
+
+### GAME OVER
+
+> 1 - Crie a função game over
+
+-   Logo antes da função `gameLoop` crie a função `gameOver`, com dois parâmetros: `deslocamento` e `alturaPulo`
+    ```javascript
+    function gameOver(deslocamento, alturaPulo) {}
+    ```
+
+#### "Baixar" a bandeira
+
+-   Dentro da função, mude `jogoEstaRodando` para `false`
+    ```javascript
+    // BANDEIRA
+    jogoEstaRodando = false;
+    ```
+
+##### Áudio
+
+-   Pause `audioStart` e reproduza `audioEnd`
+    ```javascript
+    // AUDIO
+    audioStart.pause();
+    audioEnd.play();
+    ```
+
+##### JOGADOR
+
+-   Para `spriteJogador`
+    -   Remova a classe `jump`
+    -   mude o `src` para `"/img/player_losing.png"
+    -   e mude `style.bottom` para `${alturaPulo}px`
+        -   `${alturaPulo}px` deve estar entre crases e não aspas`""`
+    ```javascript
+    // JOGADOR
+    spriteJogador.classList.remove("jump");
+    spriteJogador.src = "/img/player_losing.png";
+    spriteJogador.style.bottom = `${alturaPulo}px`;
+    ```
+
+##### CANO
+
+-   Para `spriteCano`
+    -   Remova a classe `slide`
+    -   e mude `style.left` para `${deslocamento}px`
+    ```javascript
+    // CANO
+    spriteCano.classList.remove("slide");
+    spriteCano.style.left = `${deslocamento}px`;
+    ```
+
+#### Visão Game Over
+
+-   Use `setTimeout` para rotear para `visaoGameOver` após `4000` milisegundos (4 segundos).
+
+    ```javascript
+    setTimeout(() => {
+        pseudoRotear(visaoGameOver);
+    }, 4000);
+    ```
+
+Tudo junto fica assim:
+
+```javascript
+function gameOver(deslocamento, alturaPulo) {
+    // Bandeira
+    jogoEstaRodando = false;
+
+    // AUDIO
+    audioStart.pause();
+    audioEnd.play();
+
+    // JOGADOR
+    spriteJogador.classList.remove("jump");
+    spriteJogador.src = "/img/player_losing.png";
+    spriteJogador.style.bottom = `${alturaPulo}px`;
+
+    // CANO
+    spriteCano.classList.remove("slide");
+    spriteCano.style.left = `${deslocamento}px`;
+
+    // Visão Game Over
+    setTimeout(() => {
+        pseudoRotear(visaoGameOver);
+    }, 4000);
+}
+```
+
+> 2 - Chamar a função ao perder
+
+-   No `gameLoop` no `if(estaColidindo)` chame a função, passando `deslocamentoCano` e `alturaPuloJogador` como parâmetros, separados por vírgula `,`
+    ```javascript
+    if (estaColidindo) {
+        // FIM DE JOGO
+        gameOver(deslocamentoCano, alturaPuloJogador);
+    }
+    ```
+-   Faça o teste no navegador
