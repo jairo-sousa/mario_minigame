@@ -25,6 +25,7 @@
 -   [ROTEAMENTO](#ROTEAMENTO)
 -   [EXECUÇÃO DO JOGO](#EXECUÇÃO-DO-JOGO)
 -   [AÇÃO PULO](#AÇÃO-PULO)
+-   [CÁLCULO DE COLISÃO](#CÁLCULO-DE-COLISÃO)
 
 ## </br>
 
@@ -436,3 +437,117 @@ document.addEventListener("keypress", function (evento) {
 ```
 
 -   Teste o pulo no navegador
+
+## </br>
+
+### CÁLCULO DE COLISÃO
+
+> 1 - Obtenha a posição do Mario e do Cano
+
+##### Deslocamento do cano
+
+-   Dentro da finção `gameLoop` crie a `const` `deslocamentoCano`
+    ```javascript
+    const deslocamentoCano
+    ```
+-   O valor dela será a distancia do cano até a borda esquerda da tela. para isso usamos `getBoundingClientRect()` e acessamos o left. Fica assim:
+
+    ```javascript
+    function gameLoop() {
+        console.log("O jogo está executando...");
+
+        const deslocamentoCano = spriteCano.getBoundingClientRect().left;
+
+        // LIDANDO COM EXECUÇÃO DO JOGO
+        if (jogoEstaRodando) {
+            //  CONTINUAR EXECUTANDO
+            requestAnimationFrame(gameLoop);
+        }
+    }
+    ```
+
+##### Altura do Mario
+
+-   Logo abaxo de `deslocamentoCano` crie a `const` `alturaPuloJogador`
+    ```javascript
+    const alturaPuloJogador
+    ```
+-   Podemos usar `getBoundingClientRect()` e acessar o `bottom` para obter a distância da parte de BAIXO do JOGADOR até a parte de CIMA da TELA
+    ```javascript
+    const alturaPuloJogador = spriteJogador.getBoundingClientRect().bottom;
+    ```
+-   Para obter de fato a altura do jogador devemos fazer: altura da tela (`window.innerHeight`) menos `-` `spriteJogador.getBoundingClientRect().bottom`
+    ```javascript
+    const alturaPuloJogador =
+        window.innerHeight - spriteJogador.getBoundingClientRect().bottom;
+    ```
+-   Dentro do `gameLoop`, dê um `console.log` para `deslocamentoCano` e outro para `alturaPuloJogador`
+    ```javascript
+    console.log(deslocamentoCano);
+    console.log(alturaPuloJogador);
+    ```
+-   Clique em start e veja o console do navegador
+    -   Observer que os valores mudam a cada instante e em algum momento o mario "bate" no cano. Queremos saber os valores de `deslocamentoCano` e `alturaPuloJogador` nesse momento, para informar que aconteceu uma colisão, ou seja, game over.
+
+</br>
+
+> 2 - Faça o cálculo de colisão
+
+-   crie a `const` `alinhadoHorizontal` para saber se o mario e o cano estão alinhados horizontalmente.
+    ```javascript
+    const alinhadoHorizontal =
+        deslocamentoCano <= 225 && deslocamentoCano >= 90;
+    ```
+-   crie a `const` `alinhadoVertical` para saber de estão alinhados verticalmente
+
+    ```javascript
+    const alinhadoVertical = alturaPuloJogador <= 133;
+    ```
+
+-   Agora crie `estaColidindo` para o caso de os dois serem verdade
+    ```javascript
+    const estaColidindo = alinhadoHorizontal && alinhadoVertical;
+    ```
+-   Por fim abaixo da linha:
+
+    ```javascript
+    // LIDANDO COM EXECUÇÃO DO JOGO
+    ```
+
+    -   adicione um `if`, pois "se estiver colidindo" então será "fim de jogo", e mostre no console: "fim de jogo"
+
+    ```javascript
+    if (estaColidindo) {
+        // FIM DE JOGO
+        console.log("fim de jogo");
+    }
+    ```
+
+Tudo junto deve ficar assim:
+
+```javascript
+function executarJogo() {
+    // VERIFICAÇÃO DE COLISÃO
+    const deslocamentoCano = spriteCano.getBoundingClientRect().left;
+    const alturaPuloJogador =
+        window.innerHeight - spriteJogador.getBoundingClientRect().bottom;
+
+    console.log(deslocamentoCano);
+    console.log(alturaPuloJogador);
+
+    const alinhadoHorizontal =
+        deslocamentoCano <= 225 && deslocamentoCano >= 90;
+    const alinhadoVertical = alturaPuloJogador <= 133;
+    const estaColidindo = alinhadoVertical && alinhadoHorizontal;
+
+    // LIDANDO COM EXECUÇÃO DO JOGO
+    if (estaColidindo) {
+        // FIM DE JOGO
+        console.log("fim de jogo");
+    }
+    if (jogoEstaRodando) {
+        //  CONTINUAR EXECUTANDO
+        requestAnimationFrame(executarJogo);
+    }
+}
+```
